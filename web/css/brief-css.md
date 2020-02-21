@@ -1,5 +1,5 @@
-summary: 棋歌教学网 - HTML 简介
-id: brief-html
+summary: 棋歌教学网 - CSS 简介
+id: brief-css
 categories: Web
 tags: QiGe
 status: Published
