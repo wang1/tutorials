@@ -6,545 +6,743 @@ status: Published
 authors: QiGe
 Feedback Link: mailto: gridwang@gmail.com
 
-# HTML简介
+# CSS 简介
 
-## 何为HTML
-Duration: 5
+## 何为 CSS
+Duration: 2
 
-**HTML**是超文本标记语言（HyperText Markup Language）的缩写。我们用 HTML 来构建 Web 页面即所谓的网页。
+**CSS**是级联样式表（Cascading Style Sheets）的缩写。HTML 用于撰写页面的内容，而 CSS 将决定这些内容该如何在屏幕上呈现。
 
-Positive
-: “超文本”（hypertext）是指连接单个网站内或多个网站间的网页的链接。链接是网络的一个基本方面。只要将内容上传到互联网，并将其与他人创建的页面相链接，你就成为了万维网的积极参与者。
-
-**HTML** 是构成 Web 世界的一砖一瓦。它定义了网页内容的含义和结构。除 HTML 以外的其它技术则通常用来描述一个网页的表现与展示效果（如 CSS），或功能与行为（如 JavaScript）。
-
-**HTML** 不是一门编程语言，而是一种用于**定义内容结构的标记语言**。
-
-在浏览器中看到的任何网页背后都是一个 **HTML** 文档，只要在网页上点击鼠标右键->查看源代码（用控制台工具也可）就可看到。
+网页的内容是由 HTML的元素构建的，这些元素如何呈现，涉及许多方面，如整个页面的布局，元素的位置、距离、颜色、大小、是否显示、是否浮动、透明度等等。
 
 Positive
-: **HTML**以及我们后面将要学习的 **CSS**（Cascading Style Sheets 级联式样式表) 和 **JavaScript** 是构建广泛使用的Web程序的三剑客。
+: **提示：** 在 Internet 早期阶段（CSS大量使用之前），页面的内容和样式都由 HTML 来负责，这是一个相当糟糕的问题。
 
-下面我们就开始学习如何撰写 HTML 文档。
+万维网联盟 W3C（World Wide Web Consortium）意识到这个问题，于1997年推出 CSS 1.0（当前最新的版本是 CSS3），正式推动了内容（HTML）和表现（CSS）的分离，人们开始可以把所有的布局和样式代码从 HTML 中移除放入到 CSS 中。
 
-## HTML文档结构
-Duration: 5
+CSS 入门极其容易，但要完全掌握及合理的应用则比较困难。
 
-### 新建工作目录
+下面我们就对 CSS 进行简要的学习。
 
-前面我们已经安装了开发软件 **code** 及其相关的插件（[code下载](https://code.org)）。运行该软件，打开/新建一个文件夹，如下图所示：
+## CSS 语法
+Duration: 10
 
-![new-directory](assets/code-new-dic.png)
+一条CSS样式规则由两个主要的部分构成：选择器，以`{}`包裹的一条或多条声明:
 
-Negative
-: **注意：** 该文件夹是我们的工作目录，一般不建在C盘
+![CSS-syntax](./assets/css.jpg)
+
+这条规则表明，页面中所有的一级标题都显示为蓝色，字体大小为12像数。
+说明：
+
+* 选择器是您需要改变样式的对象（上图的规则就一级标题生效）。
+* 每条声明由一个属性和一个值组成。（无论是一条或多条声明，都需要用`{}`包裹，且声明用`;`分割）
+* 属性（property）是您希望设置的样式属性（style attribute）。每个属性有一个值。属性和值被冒号分开。
+
+再如下例所示：
+
+```css
+/* 这是CSS的注释 */
+/* 建议每条申明占一行 */
+p{
+  color:red;
+  text-align:center;  /* 文本居中 */
+}
+```
+
+### 选择器
+
+一个页面上的元素众多，选择器就用于在页面中找到/选择需要应用这个样式的对象。
+除我们前示的元素选择器外，还有`id`和`class`选择器。其中`class`选择器使用非常普遍。
+
+**id 选择器**
+
+```css
+/* 注意：id选择器前有 # 号。 */
+#sky{
+  color: blue;
+}
+```
+
+这条规则表明，找到页面上`id`为`sky`的那个元素让它呈现蓝色，如下所示的页面，**蓝色的天空**这几个字就将会是蓝色的。
+
+```html
+<p id="sky">蓝色的天空</p>
+<p id="forest">绿色的森林</p>
+```
 
 Positive
-: **提示:** 请把上图底部的选项 **Auto Save** 选中，这样系统会自动保存我们的代码
+: **提示：** 你还记得HTML中，元素的id值必须唯一吗？ 所以，id 选择器适用范围只有一个元素。
 
-### 新建 HTML 文件
+**class 选择器**
 
-接下来在该文件夹下新建一个 **后缀名为html** 的文件，如下图所示：
+```css
+/* 注意：class选择器前有 . 号。 */
+.center{
+  text-align: center;
+}
+.large{
+  font-size: 30px;
+}
+.red{
+  color: red;
+}
+```
 
-![new-file](assets/code-new-file.png)
+以上代码定义了三条规则，分别应用于页面上对应的元素，如只要页面上某元素的`class`为`red`，那么就让它呈现红色。
+如下所示的页面：
 
-在该文件中输入如下内容：
+```html
+<p class="center">我会居中显示的</p>
+<p class="red">我是红色的</p>
+<p class="center large red">我又红又大还居中</p>
+<p class="red">我也可以是红的</p>
+```
+
+Positive
+: **提示：** 由上例可看出，元素的class值可以多个，也可以重复。因此，实际应用中，class 选择器应用非常普遍。
+
+## CSS 如何生效
+Duration: 8
+
+上节我们学习了如何定义 CSS样式，那么如何让这些规则对页面生效？
+我们一般有三种方法：外部样式表，内部样式表，内联样式
+
+### 外部样式表
+
+新建如下内容的一个 HTML文件（后缀为.html)：
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <!-- 注意下面这个语句，将导入外部的 mycss.css 样式表文件 -->
+  <link rel="stylesheet" type="text/css" href="mycss.css">
   <title>页面标题</title>
 </head>
 <body>
-  <h1>我的第一个Web页</h1>
-  <p>当前有点丑：)</p>
+  <h1>我是有样式的</h1>
+  <hr>
+  <p class="haha">还是有点丑：)</p>
 </body>
 </html>
 ```
 
-### 看看结果
+在同一目录新建一个样式表文件mycss.css（注意后缀名为css）如下：
 
-Web 浏览器如 Chrome、 Firefox、Edge、Safari 等用来读取 HTML 文件并呈现出来。（**再次推荐使用 Chrome 或 Firefox**）
+```css
+body {
+  background-color: linen;
+  text-align: center;
+}
+h1 {
+  color: red;
+}
+.haha {
+  margin-top: 100px;
+  color: chocolate;
+  font-size: 50px;
+}
+```
 
-在开发工具 code 中我们已经安装了`open in browser`插件，因此在 code 的**编辑区点击鼠标右键**即可看到快捷方式将该文件在浏览器中打开。如下图所示：
+在浏览器中打开这个 HTML 文件看看效果。
 
-![code-open-in-browser](assets/code-open-in-browser.png)
+Positive
+: **提示：** 一般我们会在项目目录下建一个文件夹如`css`专门存放样式表文件，如此我们引入样式文件时路径就变为 `./css/mycss.css`之类的。
+
+Positive
+: **提示：** 引入外部样式表是我们使用样式的主流方式，因为众多的样式规则单独放在一个文件中，与 HTML 内容分开，结构清晰。同时其它页面也可使用，达到复用的目的。
+
+### 内部样式表
+
+我们也可以将样式放在 HTML 文件中，这称为内部样式表。如：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- 注意下面这个语句，将导入外部的 mycss.css 样式表文件 -->
+  <link rel="stylesheet" type="text/css" href="mycss.css">
+  <title>页面标题</title>
+  <style>
+    body {
+      background-color: linen;
+      text-align: center;
+    }
+    h1 {
+      color: red;
+    }
+    .haha {
+      margin-top: 100px;
+      color: chocolate;
+      font-size: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>我是有样式的</h1>
+  <hr>
+  <p class="haha">还是有点丑：)</p>
+</body>
+</html>
+```
+
+该例子与上述例子一样的效果，但注意在`<head>`元素中引入了`<style>`标签，放入了样式。
+
+Positive
+: **提示：** 一般而言，只有页面的样式规则较少时可采用这种方式。
+
+### 内联样式
+
+所谓内联样式，就是直接把样式规则直接写到要应用的元素中，如：
+
+```html
+<h3 style="color:green;">I am a heading</h3>
+```
+
+Positive
+: **提示：** 内联样式是最不灵活的一种方式，完全将内容和样式合在一起，实际应用中非常少见。
+
+### 级联的优先级
+
+前面我们学习了三种使用样式的方式，如果某元素如`<p>`在外部、内部及内联样式中都被设置`color:red;`、`color:green;`、`color:blue;`，那么到底是什么颜色，也即到底哪个有效呢？
+这就涉及样式的优先级问题，从高到低分别是：
+
+1. 内联样式
+2. 内部样式表或外部样式表
+3. 浏览器缺省样式
+
+Positive
+: **提示：** 其实，一句话可总结为哪个样式定义离元素的距离近，哪个就生效。
 
 Negative
-: **思考：** 假设上述方式没能成功在浏览器打开，我们还有什么方法看到结果？
+: **思考：** 上面优先级第2项有内部样式表和外部样式表两个，到底哪个优先？
 
-## HTML 文档结构分析
-Duration: 5
+## 颜色, 尺寸, 对齐
+Duration: 6
 
-### HTML元素（elements）
+### 颜色
 
-HTML 使用“标记”（markup）来注明文本、图片和其他内容，以便于在浏览器中显示。HTML 标记包含一些规定的“元素”如 `<head>，<title>，<body>，<header>，<footer>，<article>，<section>，<p>，<div>，<span>，<img>，<aside>，<audio>，<canvas>，<datalist>，<details>，<embed>，<nav>，<output>，<progress>，<video>` 等等。
+颜色在网页中的重要性不言而喻。
+我们可以采用颜色名称也可以使用颜色RGB16进制值，来设定前景或背景的颜色。如：
 
-检查我们刚创建的 HTML 文档你会发现，整个 HTML 就由一个个元素组成（可以嵌套），而元素则一般由一对标签（tag）构成。
+```html
+<!-- 颜色名称 -->
+<h3 style="background-color:Tomato;">Tomato</h3>
+<h3 style="background-color:Orange;">Orange</h3>
+<h3 style="background-color:DodgerBlue;">DodgerBlue</h3>
+<h3 style="background-color:MediumSeaGreen;">MediumSeaGreen</h3>
+<h3 style="background-color:Gray;">Gray</h3>
+<h3 style="background-color:SlateBlue;">SlateBlue</h3>
+<h3 style="background-color:Violet;">Violet</h3>
+<h3 style="background-color:LightGray;">LightGray</h3>
+<hr>
+<!-- 颜色值，3个字节分别代表RGB（Red，Green，Blue）的0～255的值 -->
+<h3 style="background-color:#ff0000;">#ff0000</h3>
+<h3 style="background-color:#0000ff;">#0000ff</h3>
+<h3 style="background-color:#3cb371;">#3cb371</h3>
+<h3 style="background-color:#ee82ee;">#ee82ee</h3>
+<h3 style="background-color:#ffa500;">#ffa500</h3>
+<h3 style="background-color:#6a5acd;">#6a5acd</h3>
+<!-- 文本颜色 -->
+<h3 style="color:Tomato;">Hello World</h3>
+<p style="color:DodgerBlue;">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+<p style="color:MediumSeaGreen;">Ad facilis est ducimus rem consectetur, corporis omnis, eveniet esse dolor molestiae numquam odio corrupti, sed obcaecati praesentium accusamus? Tempora, dolor a?</p>
+```
 
-### 剖析一个 HTML 元素
+Negative
+: **注意：** 为演示方便，我们的样式采用了内联方式，实际中不能这样做！
 
-如下所示的一个用于展示段落的元素：
+一个网站，颜色是其重要的一个特征。如 facebook，twitter，taobao等等（我们学校的主色调是什么？）。甚至连香港地铁的各个站也使用了颜色来区分，如下图：
 
-![element](assets/element.png)
+![HKC](assets/hkc.jpg)
 
-1. 开始标签（Opening tag）：包含元素的名称（本例为 p），被左、右角括号所包围。表示元素从这里开始或者开始起作用 —— 在本例中即段落由此开始。
-2. 结束标签（Closing tag）：与开始标签相似，只是其在元素名之前包含了一个斜杠。这表示着元素的结尾 —— 在本例中即段落在此结束。初学者常常会犯忘记包含结束标签的错误，这可能会产生一些奇怪的结果。
-3. 内容（Content）：元素的内容，本例中就是所输入的文本本身。
-4. 元素（Element）：开始标签、结束标签与内容相结合，便是一个完整的元素。
+Positive
+: 网页选用一种耐看、易用、符合心意的配色是不容易的，尤其在没有专业设计师时。幸好，即使没有美学基础，但有一些已经调配好的配色方案我们可以直接使用。去[ColorDrop](https://colordrop.io/) 或 [LOL Corlors](https://www.webdesignrankings.com/resources/lolcolors/) 挑选你网站的配色吧。
 
-### 剖析 HTML 文档
+### 尺寸
 
-对于我们前面创建的 HTML 文档，分析如下：
+我们可以用 `height` 和 `width` 设定元素内容占据的尺寸。常见的尺寸单位有：像数 `px`，百分比 `%`等。
+新建如下 HTML 文件：
 
-1. `<!DOCTYPE html>`: 声明文档类型。出于历史原因需要，现在可有可无。
-5. `<html></html>`: `<html>`元素。这个元素包裹了整个完整的页面，是一个根元素，**其它元素都嵌套到其中**。
-6. `<head></head>`: `<head>`元素。 这个元素是一个容器，它包含了所有你想包含在HTML页面中但不想在HTML页面中显示的内容。这些内容包括你想在搜索结果中出现的关键字和页面描述，CSS样式，字符集声明等等。
-7. `<meta charset="utf-8">`: 这个元素设置文档使用utf-8字符集编码，utf-8字符集包含了人类大部分的文字。基本上他能识别你放上去的所有文本内容。毫无疑问要使用它，并且它能在以后避免很多其他问题。
-8. `<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">`: 指定页面的图标，出现在浏览器标签上。(试一试：你可随意下载一个`.ico`图标文件到工作目录中)
-9. `<title></title>`: 设置页面标题，出现在浏览器标签上，当你标记/收藏页面时它可用来描述页面。
-10. `<body></body>`: `<body>`元素。 包含你能在页面看到的所有内容，包括文本，图片，音频，游戏等等。
+```html
+<html>
+  <head>
+    <link rel="stylesheet" href="./mycss.css">
+  </head>
+  <body>
+    <div class="example-1">
+      这个元素高 200 pixels，占据全部宽度
+    </div>
+    <div class="example-2">
+      这个元素宽200像素,高300像素
+    </div>
+  </body>
+</html>
+```
 
-## HTML 文档相关说明
+再建对应的 CSS 文件如下：
+
+```css
+.example-1 {
+  width: 100%;
+  height: 200px;
+  background-color: powderblue;
+  text-align: center;
+}
+.example-2 {
+  height: 100px;
+  width: 500px;
+  background-color: rgb(73, 138, 60);
+  text-align: right;
+}
+```
+
+### 对齐
+
+对于**元素中的文本**，我们可以简单的设置`text-align`属性为`left, center, right`即可（显然缺省的是左对齐），上例中已有相关的应用。
+对于元素本身如何对齐，我们后面再学习。
+
+## 盒子模型
 Duration: 10
 
-### 注释
+盒子模型指的是一个 HTML 元素可以看作一个盒子。从内到外，这个盒子是由**内容 content, 内边距 padding, 边框 border, 外边距 margin**构成的，如下图所示：
 
-如同大部分的编程语言一样，在 HTML 中有一种可用的机制来在代码中书写注释 。
+![box](assets/box.jpg)
 
-注释是被浏览器忽略的，而且是对用户不可见的，它们的目的是允许你描述你的代码是如何工作的和不同部分的代码做了什么等等。 如果你在半年后重新返回你的代码库，而且不能记起你所做的事情，或者当你处理别人的代码的时候， 那么注释是很有用的.
+**说明：**
 
-为了将一段 HTML 中的内容置为注释，你需要将其用特殊的记号`<!--`和`-->`包括起来， 比如：
+* Content 盒子的内容，如文本、图片等
+* Padding 填充，也叫内边距，即内容和边框之间的区域
+* Border  边框，默认不显示
+* Margin  外边距，边框以外与其它元素的区域
 
-```html
-<p>我在注释外，可以显示！</p>
-<!-- <p>我在注释内！浏览器将忽略我</p> -->
-```
-
-Positive
-: **提示：** 在 code 软件中，输入`Ctrl + /`即可快捷的进行注释！
-
-Positive
-: **注意：** HTML 不区分标签的大小写，但建议全部使用小写！
-
-### 空元素
-
-一般来说，元素都拥有**开始标签，内容，结束标签**。但有一些元素只有一个开始标签，通常用来在此元素所在位置插入/嵌入一些东西，如`<br>, <hr>, <input>, <img>, <a>`等等。我们称其为空元素，如下：
+新建如下 HTML 文件：
 
 ```html
-<!-- 换行 -->
-<p>我可以<br>换行</p> 
-<!-- 水平分割线 -->
-<hr>
-<!-- 输入框 -->
-<input>
+<html>
+  <head>
+    <link rel="stylesheet" href="./mycss.css">
+  </head>
+  <body>
+    <div class="box1">我是内容一，外面红色的是我的边框。注意边框的内外都有25px的距离。</div>
+    <div class="box2">我是内容二，外面蓝色的是我的边框。注意与上面元素的外边距，发生了叠加，不是50px而是25px。</div>
+  </body>
+</html>
 ```
+
+再建对应的 CSS 文件如下：
+
+```css
+.box1 {
+  height: 200px;
+  width: 200px;
+  background-color:#615200;
+  color: aliceblue;
+  border: 10px solid red;
+  padding: 25px;
+  margin: 25px;
+}
+.box2 {
+  height: 300px;
+  width: 300px;
+  background-color:#004d61;
+  color: aliceblue;
+  border: 10px solid blue;
+  padding: 25px;
+  margin: 25px;
+}
+```
+
+打开浏览器看看效果。
 
 Positive
-: **提示:** 在上面代码中你看到`<br>`元素放到`<p>`元素之中——这被称作嵌套！
+: **提示：** 在页面上点击鼠标右键，选择**审查元素**，你可清楚看到如下图所示的布局。
 
-### 元素的属性
+![border](assets/border.jpg)
 
-元素是可以有相关属性的。属性包含元素的额外信息，这些信息不会在浏览器中显示出来。
+留意上图，你会发现一个元素真正占据的宽度应该是：
+左外边距 + 左边框宽度 + 左内边距 + 内容宽度 + 右内边距 + 右边框宽度 + 右外边距
+
+因此，我们在用`width`属性设置元素的宽度时，实际上只设置了其内容的宽度。
+
+Negative
+: **思考：** 请想想高度该如何计算？
+
+## 边框与边距
+Duration: 6
+
+Positive
+: **提示：** 无论边框、内边距还是外边距，它们都有上下左右四个方向。
+
+### 边框
+
+试一试如下的代码：
 
 ```html
-<!-- 带属性的段落输入框 -->
-<p title="这是个title属性">鼠标移上来试试！</p>
-<!-- 带属性的输入框 -->
-<input type="text">
-<input type="password">
+<p class="example-1">I have black borders on all sides.</p>
+<p class="example-2">I have a blue bottom border.</p>
+<p class="example-3">I have rounded grey borders.</p>
+<p class="example-4">I have a purple left border.</p>
 ```
 
-一个属性必须包含如下内容：
+```css
+.example-1 {
+  border: 1px dotted black; /* 上下左右都相同 */
+}
+.example-2 {
+  border-bottom: 1px solid blue; /* 只设置底部边框 */
+}
+.example-3 {
+  border: 1px solid grey;
+  border-radius: 15px; /* 边框圆角 */
+}
+.example-4 {
+  border-left: 5px solid purple;
+}
+```
 
-1. 一个空格，在属性和元素名称之间。(如果已经有一个或多个属性，就与前一个属性之间有一个空格。)
-2. 属性名称，后面跟着一个 = 号。
-3. 一个属性值，由一对引号 "" 引起来。
+### 边距
 
-## 标题（heading）
+下面样式说明了内边距的设置：
+
+```css
+padding: 20px; /* 上下左右都相同 */
+padding-top: 20px;
+padding-bottom: 100px;
+padding-right: 50px;
+padding-left: 80px;
+padding: 25px 50px 75px 100px; /* 简写形式，按上，右，下，左顺序设置 */
+padding: 25px 10px; /* 简写形式，上下为25px，左右为10px */
+```
+
+外边距与此类似。
+
+Positive
+: **提示：** 请留意简写时的顺序为上，右，下，左，或记为顺时针方向。
+
+## 定位
+Duration: 9
+
+`position`属性用于对元素进行定位。该属性有以下一些值：
+
+* static    静态
+* relative  相对
+* fixed     固定
+* absolute  绝对
+
+设置了元素的`position`属性后，我们才能使用`top, bottom, left, right`属性，否则定位无效。
+
+### static
+
+设置为静态定位`position: static;`，这是元素的默认定位方式，也即你设置与否，元素都将按正常的页面布局进行。
+即：按照元素在 HTML出现的先后顺序从上到下，从左到右进行元素的安排。
+
+### relative
+
+设置为相对定位`position: relative;`，这将把元素相对于他的静态（正常）位置进行偏移
+试试如下的代码：
+
+```html
+<!-- HTML -->
+<div class="example-relative">我偏移了正常显示的位置。去掉我的样式对比看看？</div>
+<!-- CSS -->
+.example-relative {
+  position: relative;
+  left: 60px;
+  top: 40px;
+  background-color: rgb(173, 241, 241);
+}
+```
+
+### fixed
+
+设置为固定定位`position: fixed;`，这将使得元素固定不动（即使你上下左右拖动浏览器的滚动条）。
+此时元素固定的位置仍由`top, bottom, left, right`属性确定，但相对的是视口（viewport，就是浏览器的屏幕可见区域）
+如下的代码将会在浏览器右下角固定放置一个按钮元素：
+
+```html
+<!-- HTML -->
+<div class="broad">占位区域。请将浏览器窗口改变大小，看看右下角的按钮发生了什么？</div>
+<div class="example-fixed">这个按钮是固定的</div>
+<!-- CSS -->
+.example-fixed {
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  padding: 6px 24px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #9d0f0f;
+  cursor: pointer;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.3), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+.broad {
+  height: 5000px;
+  width: 5000px;
+  padding: 20px;
+  background-color: darkkhaki;
+}
+```
+
+### absolute
+
+设置为绝对定位`position: absolute;`，将使元素相对于其**最近设置了定位属性（非static）的父元素**进行偏移。
+如果该元素的所有父元素都没有设置定位属性，那么就相对于`<body>`这个父元素。
+
+negative
+: **注意：** 绝对定位此处可能有些混淆，请留意其是仍是相对的，不过是相对**最近的父元素**
+
+试试如下的代码：
+
+```html
+<!-- HTML -->
+<div class="example-relative">这是父元素，有 relative 定位属性
+  <div class="example-absolute">
+    这是子元素，有 absolute 定位属性
+  </div>
+</div>
+<!-- CSS -->
+.example-relative {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  border: 3px solid rgb(87, 33, 173);
+}
+.example-absolute {
+  position: absolute;
+  top: 80px;
+  right: 5px;
+  width: 200px;
+  height: 100px;
+  border: 3px solid rgb(218, 73, 16);
+}
+```
+
+## 溢出
 Duration: 3
 
-HTML 提供了从大到小6级标题，分别是：`<h1> ~ <h6>`，如下所示：
+当元素内容超过其指定的区域时，我们通过溢出`overflow`属性来处理这些溢出的部分。
+溢出属性有一下几个值：
+
+* visible 默认值，溢出部分不被裁剪，在区域外面显示
+* hidden  裁剪溢出部分且不可见
+* scroll  裁剪溢出部分，但提供上下和左右滚动条供显示
+* auto    裁剪溢出部分，视情况提供滚动条
+
+以上内容较好理解，请自行进行验证。
+关于滚动，我们还可以单独对上下或左右方向进行，如下代码所示：
 
 ```html
-<h1>This is heading 1</h1>
-<p>This is some text.</p>
-<hr>
-<h2>This is heading 2</h2>
-<p>This is some other text.</p>
-<hr>
+<!-- HTML -->
+<div class="example-overflow-scroll-y">You can use the overflow property when you want to have better control of the
+    layout. The overflow property specifies what happens if content overflows an element's box.
+</div>
+<!-- CSS -->
+.example-overflow-scroll-y {
+  width: 200px;
+  height: 100px;
+  background-color: #eee;
+  overflow-y: scroll;
+}
 ```
-在页面中，标题非常重要：
 
-1. 搜索引擎用标题来索引页面的内容
-2. 用户也习惯以标题进行主要内容浏览，以决定是否查看该页面
+## 浮动
+Duration: 6
 
-Positive
-: **提示：** 一级标题`<h1>`最醒目，应该用于页面的主标题，其次为二级标题，以此类推
+在一个区域或容器内，我们可以设置`float`属性让某元素水平方向上向左或右进行移动，其周围的元素也会重新排列。
+我们常用这种样式来使图像和文本进行合理布局，如我们希望有以下的效果：
+
+![float1](assets/float1.jpg)
+
+让图片向右浮动即可，代码如下：
+
+```html
+<html>
+<head>
+  <style>
+    .example-float-right {
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" class="example-float-right" alt="">
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, architecto officiis, repellendus
+  corporis obcaecati, et commodi quam vitae vel laudantium omnis incidunt repellat qui eveniet fugiat totam
+  modi nam vero!</p>
+</body>
+</html>
+```
+
+一个浮动元素会尽量向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。
+浮动元素之后的元素将围绕它。
 
 Negative
-: **注意：** 不要因为希望醒目，试图使用标题对正文的文字进行放大或加粗。正文文字的醒目可以使用文本格式或 CSS 进行。
+: **试一试：** 有如下4张图片，如果没加样式的话，这几张图片将会从上到下依次显示。考虑使用左浮动，让它们水平依次显示。
 
-## 文本格式
-Duration: 5
+![float2](assets/float2.jpg)
 
-Negative
-: **注意：** 除本节介绍的这些标签可用于文本的格式外，其它标签都不建议用来进行格式的设置，如：`<font><big><center>`等标签皆为不推荐使用的。HTML 是用来表现页面内容而不是对页面进行修饰的，专门的页面美化需要使用后面将要学习的 CSS 。
+一个元素浮动后，其后的元素将尽可能包围它，或者说出现在这个浮动元素的左或右方。
+如果希望浮动元素后面的元素在其下方显示，可使用`clear: both`样式来进行清除。
 
-我们需要知道的文本格式标签如下：
+## 不透明度
+Duration: 4
 
-```html
-<p>You can use the mark tag to <mark>highlight</mark> text.</p>
-<p><del>This line of text is meant to be treated as deleted text.</del></p>
-<p><s>This line of text is meant to be treated as no longer accurate.</s></p>
-<p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
-<p><u>This line of text will render as underlined</u></p>
-<p><small>This line of text is meant to be treated as fine print.</small></p>
-<p><strong>This line rendered as bold text.</strong></p>
-<p><em>This line rendered as italicized text.</em></p>
-```
+我们可以用`opacity`对任何元素（不过常用于图片）设置不透明度。
+值在`[0.0～1.0]`之间，值越低，透明度越高，如下图所示：
 
-## 超链接 a
-Duration: 5
+![opacity](assets/opacity.jpg)
 
-没有超链接就没有万维网（World Wide Web）。基本上，我们可以把任何东西加上超链接，不过常用的是文本、图片等。
-
-### 超链接语法
+试试如下代码：
 
 ```html
-<a href="https://www.baidu.com/" target="_blank">百度一下</a>
+<html>
+<head>
+  <style>
+    img {
+      width: 25%;
+      border-radius: 10px;
+      float: left;
+      margin: 10px;
+    }
+    .opacity-2 {
+      opacity: 0.2;
+    }
+    .opacity-5 {
+      opacity: 0.5;
+    }
+    .opacity-10 {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <img class="opacity-2" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(87).jpg">
+  <img class="opacity-5" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(87).jpg">
+  <img class="opacity-10" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(87).jpg">
+</body>
+</html>
 ```
 
-说明：
+## 组合选择器
+Duration: 4
 
-1. `href`即为要跳转去的地址 URL（Uniform Resorce Locator)
-2. `target`属性为`_blank`表示在新的页面打开超链接（默认是在当前页面打开即`_self`）
-3. 超链接标签包含的内容（当前为文字“百度一下”）即为显示在页面上供用户点击的
+前面我们学习了 CSS有三种选择器：元素、id 和 class 。但我们也可以进行组合，以得到简洁精确的选择。
+下面我们介绍两种组合选择器。
 
-### 锚点
+### 后代选择器
 
-锚点，也称为书签，用于标记页面的某个元素或位置。通过锚点，我们可以轻易的在长页面内实现跳转。
-
-先使用`id`属性生成某元素的锚点，然后再使用超链接指向该锚点即可。
+以空格作为分隔，如：`div .haha` 代表在`div`元素内有`.haha`这种类的所有元素。
+参见如下代码：
 
 ```html
-<!-- 文档其余部分 -->
-<h2 id="C4">第四章 论零号病人的重要性</h2>
-<!-- 文档其余部分 -->
-<a href="#C4">跳到第四章</a>
-<!-- 文档其余部分 -->
-...
+<html>
+<head>
+  <style>
+    .parent-example p {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent-example">
+    <p>Paragraph 1 in the div .parent-example.</p>
+    <p>Paragraph 2 in the div .parent-example>.</p>
+    <span>
+        <p>Paragraph 3 in the div .parent-example.</p>
+    </span>
+  </div>
+  <p>Paragraph 4. Not in a div .parent-example.</p>
+  <p>Paragraph 5. Not in a div .parent-example.</p>
+</body>
+</html>
 ```
 
-Positive
-: **注意：**
- 1. 元素的`id`值必须是唯一的，也即页面不能再有其它元素的`id`值为`C4`
- 2. 超链接中的地址需要有`#`符号
+段落1、2、3都将有黄色的背景，而段落4、5没有。
 
-Negative
-: **思考：** 经常在某些网站上看到一个浮动图标显示“回到页首”，它是如何实现的？
+### 子选择器
 
-## 图片及文件路径 img
-Duration: 8
-
-### 图片
-
-在页面插入一张图片如下：
+也称为直接后代选择器，以`>`作为分隔，如：`.haha > p` 代表在有`.haha`类的元素内的直接`<p>`元素。
+参见如下代码：
 
 ```html
-<img src="https://mdbootstrap.com/img/logo/mdb192x192.jpg" alt="MDB Logo" width="200" height="200">
+<html>
+<head>
+  <style>
+    .parent-example-2 > p {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent-example-2">
+    <p>Paragraph 1 in the div .parent-example-2.</p>
+    <p>Paragraph 2 in the div .parent-example-2.</p>
+    <span>
+        <p>Paragraph 3 in the div .parent-example-2 - it is descendant but not immediate child.</p>
+    </span> <!-- not Child but Descendant -->
+  </div>
+  <p>Paragraph 4. Not in a div .parent-example-2.</p>
+  <p>Paragraph 5. Not in a div .parent-example-2.</p>
+</body>
+</html>
 ```
 
-说明：
+虽然段落3在`.parent-example-2`类中，但它不是直接后代，所以不能选择。只有段落1、2有黄色背景。
 
-1. `src`属性为要显示图片文件的位置 URL，即图片文件的路径
-2. `alt`属性当获取图片出现问题时显示的文字（占位符）
-3. 可为图片指定高宽度，但不建议（可能导致图片变形）
+## 伪类和伪元素
+Duration: 6
 
-Positive
-: **提示：** 对于小尺寸的图片，现在可采用 **base64** 编码进行，可提高页面加载速度，提升用户体验。[可前往一试](https://c.runoob.com/front-end/59)。
+伪类（pseudo-class）或伪元素（pseudo-element）用于定义元素的某种特定的状态或位置等。
+比如我们可能有这样的需求：
 
-### 文件路径
+* 鼠标移到某元素上变换背景颜色
+* 超链接访问前后访问后样式不同
+* 离开必须填写的输入框时出现红色的外框进行警示
+* 保证段落的第一行加粗，其它正常
+* ...
 
-为获取图片文件，我们需要指定该文件位于何处，这称为文件路径。文件路径有相对路径和绝对路径两种。
+使用伪类/伪元素的语法如下：
 
-上面图片的例子即为绝对路径。下面是相对路径的例子：
-
-Column A | Column B
----------|----------
-例子 | 解释
- `<img src="picture.jpg">`          | 该图片文件与当前文档在同一目录中
- `<img src="./images/picture.jpg">` | 该图片文件在当前目录下的`images`目录中
- `<img src="../picture.jpg">`       | 该图片文件在上一级目录中
-
-
-Negative
-: **思考：** 上表中，`.`表示当前目录，`..`表示上一级目录，那么`../../imgs`是什么意思？
-
-Negative
-: **思考：** 如何用图片做成一个超链接？
-
-## 表格 Table
-Duration: 3
-
-有时，页面的内容需要用表格来进行呈现。我们使用`<table>`等标签即可：
-
-```html
-  <table>
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Age</th>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <td>Eve</td>
-      <td>Jackson</td>
-      <td>94</td>
-    </tr>
-  </table>
+```css
+/* 选择器后使用 : 号，再跟上某个伪类/伪元素 */
+selector:pseudo-class/pseudo-element {
+  property:value;
+}
 ```
 
-代码中，`<tr>`表示行, `<td>`表示行中的单元, `<th>`是表头的单元（将会加粗显示）
+以下是常用的伪类/伪元素的简单使用：
 
-Positive
-: **说明：** 当前这个表格比较丑陋，有关表格的美化我们在 CSS 部分学习。
+```css
+a:link {color:#FF0000;}     /* 未访问的链接 */
+a:visited {color:#00FF00;}  /* 已访问的链接 */
+a:hover {color:#FF00FF;}    /* 鼠标划过链接 */
+/* 鼠标移到段落则改变背景颜色 */
+p:hover {background-color: rgb(226, 43, 144);}
+p:first-line{color:blue;}   /* 段落的第一行显示蓝色 */
+p:first-letter{font-size: xx-large;}   /* 段落的第一个字超大 */
 
-## 列表 List
-Duration: 5
-
-我们也可以使用列表来呈现内容，分为无序列表和有序列表。
-
-### 无序列表
-
-```html
-<ul>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-</ul>
+h1:before { content:url(smiley.gif); } /* 在每个一级标题前插入该图片 */
+h1:after { content:url(smiley.gif); } /* 在每个一级标题后插入该图片 */
 ```
-
-无序列表使用`<ul>`标签，默认使用**实心圆点**作为每项的标志，其它的标志可以是空心圆`circle`，实心方块`square`以及不出现标志。
-
-```html
-<ul type="square">
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-</ul>
-```
-
-### 有序列表
-
-```html
-<ol>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-</ol>
-```
-
-有序列表使用`<ol>`标签，默认使用**数字**作为每项的标志，其它的标志可以是大写字母`A`，小写字母`a`，罗马字母`i`等。
-
-```html
-<ol type="a">
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-</ol>
-```
-
-## 表单 Form
-Duration: 10
-
-当网站需要获取我们的一些信息如：用户名、密码、选择买什么、买多少、提出意见等等时，我们就需要使用表单（form）来让用户填写或选择。
-
-请输入如下代码进行学习：
-
-```html
-<form>
-  <!-- 文本框，注意有 placeholder 提示符 -->
-  用户名：<br>
-  <input type="text" name="name" placeholder="请输入用户名"><br>
-  <!-- 密码框 -->
-  密码：<br>
-  <input type="password" name="ps" placeholder="请输入密码"><br>
-  年龄：<br>
-  <!-- 数字输入框，注意 min 和 value 属性-->
-  <input type="number" name="age" min="18" value="18"><br>
-  <!-- 单选按钮, 注意 checked 属性 -->
-  性别：<br>
-  <input type="radio" name="gender" value="male" checked> 男<br>
-  <input type="radio" name="gender" value="female"> 女<br>
-  <input type="radio" name="gender" value="other"> 其它<br>
-  <!-- 下拉列表，注意 selected 属性 -->
-  党派：<br>
-  <select name="party">
-    <option value="D">民主党</option>
-    <option value="R" selected>共和党</option>
-    <option value="N">无党派</option>
-  </select><br>
-  <!-- 多选框 -->
-  您有哪些交通工具：<br>
-  <input type="checkbox" name="vehicle1" value="Bike"> 自行车<br>
-  <input type="checkbox" name="vehicle2" value="Motocycle" checked> 摩托车<br>
-  <input type="checkbox" name="vehicle3" value="Car"> 轿车<br>
-  <input type="checkbox" name="vehicle4" value="Jet"> 飞机<br>
-  <!-- 日期选择器 -->
-  您的工作日期：<br>
-  <input type="date"><br>
-  <!-- 文件选择器 -->
-  上传您的照片:<br>
-  <input type="file" name="photo"><br>
-  <!-- 文本输入区域，注意 rows 和 cols 属性 -->
-  您的建议：<br>
-  <textarea name="message" rows="5" cols="30">
-    The cat was playing in the garden.
-  </textarea><br><hr>
-  <!-- 表单提交/重置按钮，将表单中的数据取消或传输给服务器端进行处理 -->
-  <input type="submit" value="提 交">
-  <input type="reset" value="重 置">
-</form>
-```
-Positive
-: **提示：** 当提交时，表单中没有`name`属性的元素将不会提交，比如上面工作日期的选择器。有`name`属性的元素其`value`的值将提交给服务器。
-
-## 其它
-Duration: 5
-
-HTML 的元素可以以称为**区块** 或 **内联**的方式进行显示。
-
-### 区块元素
-
-区块元素在浏览器显示时，通常会以**新行**来开始（和结束）。如：` <h1>, <pre>, <ul>, <table>，<div>` 等。
-
-```html
-<h2>区块元素</h2>
-<div>Hello</div>
-<div>World</div>
-<p>单独一行</p>
-```
-
-### 内联元素
-
-内联元素相反，他们总是一个接一个进行显示，不会新起一行。如： `<span>, <input>, <td>, <a>, <img>`等。
-
-```html
-<h3>下面的元素将在一行中显示</h3>
-<span>姓名：</span>
-<input name="username">
-<span>哈哈哈</span>
-<a href="https://google.com/">Google</a>
-<img src="https://mdbootstrap.com/img/logo/mdb192x192.jpg">
-```
-
-### 预设格式
-
-如果你想在网页中展示一首诗或一些特别格式的文本，那么请使用`pre`标签。
-
-```html
-<!-- pre标签中的内容将保持格式不变 -->
-<pre>
-              我如果爱你——
-              绝不象攀援的凌霄花，
-              借你的高枝炫耀自己；
-
-              我如果爱你——
-              绝不学痴情的鸟儿，
-              为绿荫重复单调的歌曲；
-
-              也不止像泉源，
-              常年送来清凉的慰藉；
-
-              也不止像险峰，
-              增加你的高度，衬托你的威仪。
-
-              甚至日光。
-              甚至春雨。
-
-              不，这些都还不够！
-              我必须是你近旁的一株木棉，
-              作为树的形象和你站在一起。
-
-              根，紧握在地下，
-              叶，相触在云里。
-
-              每一阵风过，
-              我们都互相致意，
-              但没有人，
-              听懂我们的言语。
-
-              你有你的铜枝铁干，
-              像刀，像剑，
-              也像戟；
-
-              我有我红硕的花朵，
-              像沉重的叹息，
-              又像英勇的火炬。
-
-              我们分担寒潮、风雷、霹雳；
-              我们共享雾霭、流岚、虹霓。
-              仿佛永远分离，
-              却又终身相依。
-
-              这才是伟大的爱情，
-              坚贞就在这里：
-              爱——
-              不仅爱你伟岸的身躯，
-              也爱你坚持的位置，足下的土地。
-</pre>
-```
-
-### 特殊字符
-
-考虑下面的代码将显示成什么？
-
-```html
-<p>有多          远，滚                         多远！</p>
-```
-
-或者你希望在页面显示一段 HTML 的源代码，你打算用标签`<pre>`:
-
-```html
-<pre>
-  <h1>这是个一级标题</h1>
-  <p>这是一个段落<p>
-  <a href="https://twitter.com/">眼见何事，情系何处，身处何方，心思何人</a>
-<pre>
-```
-
-以上代码将得不到你想要的结果。
-原因是：在 HTML 中，某些字符是预留的。
-在 HTML 中不能使用小于号（<）和大于号（>），这是因为浏览器会误认为它们是标签。
-如果希望正确地显示预留字符，我们必须在 HTML 源代码中使用字符实体（character entities）
-
-```html
-<p>有多&nbsp;&nbsp;&nbsp;远，滚&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;多远！</p>
-<hr>
-<h2>test.html</h2>
-<pre>
-  &lt;h1&gt;这是个一级标题&lt;/h1&gt;
-  &lt;p&gt;这是一个段落&lt;p&gt;
-  &lt;a href="https://twitter.com/"&gt;眼见何事，情系何处，身处何方，心思何人&lt;/a&gt;
-<pre>
-```
-
-特殊字符可参考[ISO-8859-1 字符实体手册](https://www.runoob.com/tags/ref-entities.html)
 
 ## 作业
 Duration: 2
 
-至此，我们对HTML有了基本的掌握。请对自己学习 HTML 进行一个总结。
+至此，我们对 CSS 有了基本的了解和掌握。下面我们进行一些小测验（来自菜鸟教程）：
+
+Negative
+: **测验：** [测验一](https://c.runoob.com/quiz/5596), [测验二](https://c.runoob.com/quiz/5597), [测验三](https://c.runoob.com/quiz/5598), [测验四](https://c.runoob.com/quiz/5599), [测验五](https://c.runoob.com/quiz/5600),
+
+Negative
+: **作业：** 请对自己学习和掌握的 CSS 知识进行一个总结。
 
 Positive
-: **提示：** 可考虑采用简单易用的 **markdown** 格式来撰写文档而不是 Word ！
+: **提示：** 可考虑采用简单易用的**markdown**格式来撰写文档而不是**Word**.
+
+你可能觉得 CSS也不过如此。的确，入门容易，用好困难。
+下面推荐两本免费但质量上乘的书供你继续：[CSS权威指南](http://gdut_yy.gitee.io/doc-csstdg4/)，[CSS In Depth](http://file.allitebooks.com/20180423/CSS%20in%20Depth.pdf)
 
 现在，请回到[棋歌教学网](https://qige.io/web/web.html)进一步学习。

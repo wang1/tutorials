@@ -32,7 +32,7 @@ Duration: 5
 
 ### 新建工作目录
 
-前面我们已经安装了开发软件 **code** 及其相关的插件（[code下载](https://code.org)）。运行该软件，打开/新建一个文件夹，如下图所示：
+前面我们已经安装了开发软件 **code** 及其相关的插件（[code下载](https://aka.ms/win32-x64-user-stable)）。运行该软件，打开/新建一个文件夹，如下图所示：
 
 ![new-directory](assets/code-new-dic.png)
 
@@ -280,12 +280,14 @@ Column A | Column B
  `<img src="./images/picture.jpg">` | 该图片文件在当前目录下的`images`目录中
  `<img src="../picture.jpg">`       | 该图片文件在上一级目录中
 
-
 Negative
 : **思考：** 上表中，`.`表示当前目录，`..`表示上一级目录，那么`../../imgs`是什么意思？
 
 Negative
 : **思考：** 如何用图片做成一个超链接？
+
+Positive
+: **提示：** 图片的存储大小对网页的加载有重要的影响，从而影响用户体验。因此，在不明显改变图片质量的情况下压缩图片是提高 Web站点速度的重要手段。请前往[WebsitePlanet](https://www.websiteplanet.com/zh-hans/webtools/imagecompressor/) 以及 [TinyPNG](https://tinify.cn/) 试试！
 
 ## 表格 Table
 Duration: 3
@@ -542,9 +544,15 @@ HTML 的元素可以以称为**区块** 或 **内联**的方式进行显示。
 ## 作业
 Duration: 2
 
-至此，我们对HTML有了基本的掌握。请对自己学习 HTML 进行一个总结。
+至此，我们对HTML有了基本的掌握。下面我们进行一些小测验（来自菜鸟教程）：
+
+Negative
+: **测验：** [测验一](https://c.runoob.com/quiz/5583), [测验二](https://c.runoob.com/quiz/5584), [测验三](https://c.runoob.com/quiz/5585), [测验四](https://c.runoob.com/quiz/5586), [测验五](https://c.runoob.com/quiz/5587),
+
+Negative
+: **作业：** 请对自己学习和掌握的 HTML 知识进行一个总结。
 
 Positive
-: **提示：** 可考虑采用简单易用的 **markdown** 格式来撰写文档而不是 Word ！
+: **提示：** 可考虑采用简单易用的**markdown**格式来撰写文档而不是**Word**.
 
 现在，请回到[棋歌教学网](https://qige.io/web/web.html)进一步学习。
