@@ -8,26 +8,12 @@ Feedback Link: mailto: gridwang@gmail.com
 
 # 棋歌教学网 - MDB教程一
 
-## 概述
-Duration: 1
-
-本教程将使用 MDB 构建一个简单的公司首页。我们将学习以下 MDB 常用的一些组件。
-
-### What You’ll Learn 
-- 如何使用MDB种子项目
-- 基本的页面结构
-- 栅格布局
-- 导航条
-- 特效图片
-- 卡片
-- 间距
-
-构建完毕后的[最后效果](https://mdbootstrap.com/snippets/jquery/ascensus/11?action=fullscreen)如下图：
-
-![final-1](./assets/t1.webp)
-
 ## 页面结构
 Duration: 5
+
+本教程将构建一个简单的公司首页。我们将学习到基本的页面结构和布局，以及 MDB 的常用的一些组件。[最后效果](https://mdbootstrap.com/snippets/jquery/ascensus/11?action=fullscreen)如下图：
+
+![final-1](./assets/t1.webp)
 
 ### MDB 模板
 
@@ -45,7 +31,7 @@ Positive
 ![index](./assets/index.jpg)
 
 Negative
-: **注意：** 上图中绿色框内是 MDB 需要的 CSS 和 JS 文件，我们不要变动它。我们需要做的就是在红色框内进行编写（看见 start/end  your project here 那个注释了吗）。
+: **注意：** 上图中绿色框内是 MDB 需要的 CSS 和 JS 文件，我们不要变动它。我们需要做的就是在红色框内进行编写（看见 start/end  your project here 了吗）。
 
 现在将红色框中的内容替换为如下代码：
 
@@ -77,8 +63,7 @@ Negative
 2. `main`元素是页面主要内容
 3. `footer`元素是一些版权和其它链接
 
-当然，现在浏览器中是看不到任何内容的.
-至此，页面基本结构搭建完毕, 下面我们开始构建导航。
+至此，页面基本结构搭建完毕, 下面我们开始构建导航。（当然，现在浏览器中是看不到任何内容的）
 
 ## 页面导航条 navbar
 Duration: 5
@@ -179,21 +164,21 @@ Positive
 
 该标签内有一个`<ul>`无序列表(放置3个导航链接及1个下拉列表)和`<form>`表单(只有一个用于搜索的`input`).
 
-#### `navbar-nav`
+#### .navbar-nav
 
 表明是导航条中的导航链接, 使得`<li>`的列表项不会分布于多行(去掉试试).
 
-#### `mr-auto`
+#### .mr-auto
 
 该样式将会把其后的项(即搜索框`<form>`靠右对齐), 你去掉该样式就明白了. 参见[自浮动](https://getbootstrap.net/docs/utilities/flex/#auto-margins).
 
 **mr** 代表 `margin-right`, 即右外边距, 有关这部分内容(代码的后面你还可以看到一个`my-0`)我们后面讲述.
 
-#### `active`
+#### .active
 
 注意这个样式, 它表明哪个超链接当前是激活的, 一般用于表明当前处于哪个活动页面.
 
-#### `sr-only`
+#### .sr-only
 
 意思是 `screen read only`, 为盲人上网设置的. 当前你可不用管它.
 
@@ -524,10 +509,8 @@ MDB 有专门的页面底部组件, 请参考[页面底部文档](https://mdboot
 
 #### 边界一致
 
-你会发现导航条和底部的内容比主体内容更靠左一些. 查看底部的代码`<div class="container-fluid text-center text-md-left">`,你会发现有`container-fluid`类, 这将占用整个可用的宽度.
-
+你会发现导航条和底部的内容比主体内容更靠左一些. 查看底部的代码`<div class="container-fluid text-center text-md-left">`,你会发现有`container-fluid`类, 这将占用整个可用的宽度. 
 将其改为`container`, 刷新浏览器, 你将会发现与主体内容对齐了, 且更美观.
-
 同样, 请将导航条的内容(就是我们前面说的三个部分)也用`container`容器包裹起来, 如下所示:
 
 ```html
@@ -577,9 +560,8 @@ Positive
 ```
 
 刷新试试.
-
 Negative
-: **思考:** 为何不直接将`mb-4`加到第一行, 而要分别加到第一行的两列? 提示: 我们的页面是响应式的. 考虑一下小屏幕(<768px时)上会发生什么.
+: **思考:** 为何不直接将`mb-4`加到第一行, 而要分别加到第一行的两列? (提示: 我们的页面是响应式的. 考虑一下小屏幕(<768px时)上会发生什么)
 
 同样的, 我们也为第二行的三列各自加上底外边距`mb-4`, 让其离底部稍远一点:
 
