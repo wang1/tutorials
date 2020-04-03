@@ -634,28 +634,28 @@ Duration: 4
 
 ### 后代选择器
 
-以空格作为分隔，如：`div .haha` 代表在`div`元素内有`.haha`这种类的所有元素。
+以空格作为分隔，如：`.haha p` 代表在`div`元素内有`.haha`这种类的所有元素。
 参见如下代码：
 
 ```html
 <html>
 <head>
   <style>
-    .parent-example p {
+    .haha p {
       background-color: yellow;
     }
   </style>
 </head>
 <body>
-  <div class="parent-example">
-    <p>Paragraph 1 in the div .parent-example.</p>
-    <p>Paragraph 2 in the div .parent-example>.</p>
+  <div class="haha">
+    <p>Paragraph 1 in the div .haha.</p>
+    <p>Paragraph 2 in the div .haha>.</p>
     <span>
-        <p>Paragraph 3 in the div .parent-example.</p>
+        <p>Paragraph 3 in the div .haha.</p>
     </span>
   </div>
-  <p>Paragraph 4. Not in a div .parent-example.</p>
-  <p>Paragraph 5. Not in a div .parent-example.</p>
+  <p>Paragraph 4. Not in a div .haha.</p>
+  <p>Paragraph 5. Not in a div .haha.</p>
 </body>
 </html>
 ```
@@ -671,26 +671,29 @@ Duration: 4
 <html>
 <head>
   <style>
-    .parent-example-2 > p {
+    .haha > p {
       background-color: yellow;
     }
   </style>
 </head>
 <body>
-  <div class="parent-example-2">
-    <p>Paragraph 1 in the div .parent-example-2.</p>
-    <p>Paragraph 2 in the div .parent-example-2.</p>
+  <div class="haha">
+    <p>Paragraph 1 in the div .haha.</p>
+    <p>Paragraph 2 in the div .haha.</p>
     <span>
-        <p>Paragraph 3 in the div .parent-example-2 - it is descendant but not immediate child.</p>
+        <p>Paragraph 3 in the div .haha - it is descendant but not immediate child.</p>
     </span> <!-- not Child but Descendant -->
   </div>
-  <p>Paragraph 4. Not in a div .parent-example-2.</p>
-  <p>Paragraph 5. Not in a div .parent-example-2.</p>
+  <p>Paragraph 4. Not in a div .haha.</p>
+  <p>Paragraph 5. Not in a div .haha.</p>
 </body>
 </html>
 ```
 
-虽然段落3在`.parent-example-2`类中，但它不是直接后代，所以不能选择。只有段落1、2有黄色背景。
+虽然段落3在`.haha`类中，但它的直接父元素是`span`，不是`.haha`的直接后代，所以不能选择。只有段落1、2有黄色背景。
+
+Positive
+: ✎ 试一试： 如果两个选择器用`,`分隔会是什么意思
 
 ## 伪类和伪元素
 Duration: 6
