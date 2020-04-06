@@ -1,16 +1,19 @@
 /**
- * 使用for循环求 1+2+3+...+99+100
+ * 使用循环和选择结构在[10,100]内找前5个能被3整除的数，找满后使用break退出循环
 **/
-#include "stdio.h"
-void main() {
-  int i, sum;  // sum用来存放和
-  for(i = 1; ; i++) {
-  printf("hahaha\n");
+#include <stdio.h>
+void main(){
+  int i, n = 0;
+  for(i = 10; i <= 100; i++) {
+    if(i % 3 == 0) {
+      n++;
+      printf("No%d: %d\n", n, i);
+    }
+    if(n == 5) {
+      break;
+    }
+  }
 }
-  printf("1+2+3+...+99+100=%d\n", sum);
-}
-
-
 
 
 // 模拟进度， 注意Windows平台是Sleep（），以毫秒为单位
@@ -26,37 +29,24 @@ void main() {
 
     // printf("\n");
   
-  // while(1){
-  //   printf("\b-");fflush(stdout);sleep(0.8);
-  //   printf("\b\\");fflush(stdout);sleep(0.8);
-  //   printf("\b|");fflush(stdout); sleep(0.8);
-  //   printf("\b/");fflush(stdout); sleep(0.8);
-  // }
-
-  // 猜数字游戏
-// #include "stdio.h"
-// #include <time.h>
-// #include <stdlib.h>
-// void main() {
-//   char bingo = 'n';
-//   int randomNumber, yourGuess, times = 0;
-//   srand( (unsigned)time( NULL ) );  // 每次不一样的种子
-//   randomNumber = rand()%100+1;
-//   //printf("%d\n",randomNumber);
-//   printf("Please input a number(1~100):");
-//   while(bingo == 'n'){
-//     scanf("%d", &yourGuess);
-//     times++;
-//     if(randomNumber > yourGuess){
-//       printf("It's greater than %d. again:", yourGuess);
-//     } else if (randomNumber < yourGuess) {
-//       printf("It's samller than %d. again:", yourGuess);
-//     } else {
-//       printf("Bingo! You got %d in %d times!", randomNumber, times);
-//       bingo = 'y';
+//   #include <stdio.h>
+// #include "unistd.h"
+// void main(){
+//   int n = 1;
+//   while(1){
+//     printf("\b-");fflush(stdout);Sleep(300);
+//     printf("\b\\");fflush(stdout);Sleep(300);
+//     printf("\b|");fflush(stdout);Sleep(300);
+//     printf("\b/");fflush(stdout);Sleep(300);
+//     n++;
+//     if(n == 3) {
+//       printf("\bGame Over\n");
+//       break;
 //     }
-//   }  
+//   }
 // }
+
+ 
 
 // 字符画
 // https://www.jianshu.com/p/fca56d635091
