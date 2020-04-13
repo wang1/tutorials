@@ -1,18 +1,19 @@
 /**
- * 使用循环和选择结构在[10,100]内找前5个能被3整除的数，找满后使用break退出循环
+ * 穷举：无重复数字的三位数有哪些
 **/
 #include <stdio.h>
 void main(){
-  int i, n = 0;
-  for(i = 10; i <= 100; i++) {
-    if(i % 3 == 0) {
-      n++;
-      printf("No%d: %d\n", n, i);
-    }
-    if(n == 5) {
-      break;
+  int gw, sw, bw; // 代表个位、十位和百位
+  for (bw = 1; bw <= 9; bw++) {
+    for (sw = 0; sw <= 9; sw++) {
+      for (gw = 0; gw <= 9; gw++) {
+        if (gw != sw && sw != bw && bw != gw) {
+          printf("%d%d%d  ", bw, sw, gw);
+        }
+      }
     }
   }
+  printf("\n");
 }
 
 
