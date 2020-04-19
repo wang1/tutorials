@@ -1,19 +1,16 @@
 /**
- * 穷举：无重复数字的三位数有哪些
+ * 求平均成绩
+ * 对数组的处理一般都与循环相关
 **/
 #include <stdio.h>
 void main(){
-  int gw, sw, bw; // 代表个位、十位和百位
-  for (bw = 1; bw <= 9; bw++) {
-    for (sw = 0; sw <= 9; sw++) {
-      for (gw = 0; gw <= 9; gw++) {
-        if (gw != sw && sw != bw && bw != gw) {
-          printf("%d%d%d  ", bw, sw, gw);
-        }
-      }
-    }
+  int score[5] = { 64, 77, 89, 99, 100 }, i, total; // total用来存放总分，需要初始化为0.
+  float ave;  // 存放平均分
+  for (i = 0; i < 5; i++) {
+    total = total + score[i];
   }
-  printf("\n");
+  ave = total / 5.0;
+  printf("Average is: %.2f\n", ave);
 }
 
 
