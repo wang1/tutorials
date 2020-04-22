@@ -1,16 +1,19 @@
 /**
- * 求平均成绩
- * 对数组的处理一般都与循环相关
+ * 凯撒加密，即将字符变为其后方固定位置的字符，以致看不明白意思
 **/
-#include <stdio.h>
-void main(){
-  int score[5] = { 64, 77, 89, 99, 100 }, i, total; // total用来存放总分，需要初始化为0.
-  float ave;  // 存放平均分
-  for (i = 0; i < 5; i++) {
-    total = total + score[i];
+#include "stdio.h"
+void main() {
+  // plainText是没加密的明文口令，cypherText存放加密的密文口令  
+  char plainText[]="DaShiWoYeBuShou", cypherText[20];
+  int i = 0;
+  while(plainText[i] != '\0') {
+     // 将明文的每个字符变为其后方第2个字符，如a变为c，S变为U等
+    cypherText[i] = plainText[i] + 2;
+    i++;
   }
-  ave = total / 5.0;
-  printf("Average is: %.2f\n", ave);
+  cypherText[i] = '\0';   // 添加新字符串结束标记
+  printf("Password is : ");
+  puts(cypherText);
 }
 
 
