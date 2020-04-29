@@ -1,19 +1,29 @@
 /**
- * 凯撒加密，即将字符变为其后方固定位置的字符，以致看不明白意思
+ * 使用函数判断是否为润年
+ * 满足润年的条件是：
+ * 能被4整除但不能被100整除(普通润年）；或者能被400整除（世纪润年）
 **/
 #include "stdio.h"
-void main() {
-  // plainText是没加密的明文口令，cypherText存放加密的密文口令  
-  char plainText[]="DaShiWoYeBuShou", cypherText[20];
-  int i = 0;
-  while(plainText[i] != '\0') {
-     // 将明文的每个字符变为其后方第2个字符，如a变为c，S变为U等
-    cypherText[i] = plainText[i] + 2;
-    i++;
+
+int isLeapYear(int year) {   // 返回一个整数（0或者1），接收要判断的年份
+  int result;
+  if ((year % 4 == 0 && year % 100 != 0) || year % 400 ==0) {
+    result = 1;
+  } else {
+    result =0;
   }
-  cypherText[i] = '\0';   // 添加新字符串结束标记
-  printf("Password is : ");
-  puts(cypherText);
+  return result;
+}
+
+void main() {
+  int n;
+  printf("Please input a year:");
+  scanf("%d", &n);
+  if (isLeapYear(n)) {
+    printf("%d is leap year!\n", n);
+  } else {
+    printf("%d is not leap year!\n", n);
+  }  
 }
 
 
