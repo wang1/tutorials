@@ -1,29 +1,16 @@
 /**
- * 使用函数判断是否为润年
- * 满足润年的条件是：
- * 能被4整除但不能被100整除(普通润年）；或者能被400整除（世纪润年）
+ * 在main函数中输入一个正整数，要求在1～20之间，否则重新输入
+ * 由fact函数使用递归的方式求出该正整数的阶乘
+ * 在main函数中输出结果。
 **/
 #include "stdio.h"
-
-int isLeapYear(int year) {   // 返回一个整数（0或者1），接收要判断的年份
-  int result;
-  if ((year % 4 == 0 && year % 100 != 0) || year % 400 ==0) {
-    result = 1;
-  } else {
-    result =0;
-  }
-  return result;
-}
-
-void main() {
-  int n;
-  printf("Please input a year:");
-  scanf("%d", &n);
-  if (isLeapYear(n)) {
-    printf("%d is leap year!\n", n);
-  } else {
-    printf("%d is not leap year!\n", n);
-  }  
+#define PF(x) x*x  // 带参数的宏，希望求x的平方
+void main(){
+    int a, pf;
+    printf("Please input a integer number:");
+    scanf("%d", &a);
+    pf = PF(a+1);  // 编译前将被替换为 a+1*a+1
+    printf("PF(a+1)=%d\n", pf);
 }
 
 
