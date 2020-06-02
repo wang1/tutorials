@@ -3,14 +3,20 @@
  * 由fact函数使用递归的方式求出该正整数的阶乘
  * 在main函数中输出结果。
 **/
-#include "stdio.h"
-#define PF(x) x*x  // 带参数的宏，希望求x的平方
-void main(){
-    int a, pf;
-    printf("Please input a integer number:");
-    scanf("%d", &a);
-    pf = PF(a+1);  // 编译前将被替换为 a+1*a+1
-    printf("PF(a+1)=%d\n", pf);
+#include <stdio.h>
+void main() {
+  float x,y;
+  char o;
+  double r;
+  scanf("%f %f %c", &x, &y, &o);
+  
+  switch(o) {
+    case '+': r = x + y; break;
+    case '-': r = x - y; break;
+    case '*': r = x * y; break;
+    case '/': r = x / y; break;
+  }
+  printf("%f", r);
 }
 
 
