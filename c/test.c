@@ -5,18 +5,14 @@
 **/
 #include <stdio.h>
 void main() {
-  float x,y;
-  char o;
-  double r;
-  scanf("%f %f %c", &x, &y, &o);
-  
-  switch(o) {
-    case '+': r = x + y; break;
-    case '-': r = x - y; break;
-    case '*': r = x * y; break;
-    case '/': r = x / y; break;
+  int score;
+  printf("Please input your score:");
+  scanf("%d",&score);
+  if(score>=90){
+    printf("You");
+  }else if(score>=80 && score<90){
+    printf("Liang");
   }
-  printf("%f", r);
 }
 
 
